@@ -1,0 +1,1 @@
+xargs -I {} rg -i -F --color=never --no-filename --no-line-number --glob "*.txt" -e "{}" ~/Desktop/logs3 < ~/Desktop/patrones > ~/Downloads/juan/juancarlos/entrada.txt

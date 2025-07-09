@@ -1,0 +1,7 @@
+//EJEMPLO DE EXCEPCIONES
+
+if example.com ++ /login //añade el directorio a la url, dando "example.com/login" en la salida
+if test.org ++ /singup //añade el directorio a la url, dando "test.org/singup" en la salida
+if test.org >> hola.com //sustituye la url, para los casos en los que la url de login es distinta a la original, dando "hola.com" en la salida
+if demo.net >> prueba.com //sustituye la url, para los casos en los que la url de login es distinta a la original, dando "prueba.com" 
+if prueba.com ++ /panel //añade el directorio a la url sustituida, dando "prueba.com/panel" en la salida
