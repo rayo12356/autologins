@@ -1,1 +1,1 @@
-//aqui salen con el formato correcto para funcionar junto a main.c
+//aqui:pon la entrada en formato:"123456:ejemplo.com:user:password"
