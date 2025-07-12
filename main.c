@@ -44,7 +44,7 @@ bool starts_with(const char *str, const char *prefix) {
     return strncmp(str, prefix, strlen(prefix)) == 0;
 }
 
-int main() {
+void producer() {
     char input[256];
     char url[150], user[100], password[100];
     char url_base[200];
@@ -52,12 +52,10 @@ int main() {
     char command[600];
     int count = 0;
 
-    if ( formater_ended ==true) {
-    
     FILE *file = fopen("salida.txt", "r");
     if (!file) {
         perror("No se pudo abrir el archivo de logins");
-        return 1;
+        return;
     }
 
     while (fgets(input, sizeof(input), file)) {
@@ -72,19 +70,15 @@ int main() {
                 snprintf(url_base, sizeof(url_base), "https://%s", url);
             }
 
-            // Solo añade "/login" si NO hay ningún '/' en el url original
-            /*if (strchr(url, '/') == NULL) {
-                snprintf(url_with_login, sizeof(url_with_login), "%s/login", url_base);
-            } else {
-                snprintf(url_with_login, sizeof(url_with_login), "%s", url_base);
-            }*/
+
+            snprintf(url_with_login, sizeof(url_with_login), "%s", url_base);
 
             // Abre la URL en una nueva pestaña de Firefox
             snprintf(command, sizeof(command), "firefox --new-tab \"%s\" &", url_with_login);
             system(command);
 
-            // Espera a que la página web cargue antes de automatizar (ajusta el tiempo según tu conexión)
-            sleep(6); // Recomendado: 6-10 segundos para páginas lentas[1][2][4]
+            // Espera a que la página web cargue antes de automatizar
+            sleep(6);
 
             // Busca la ventana de Firefox y la activa
             snprintf(command, sizeof(command),
@@ -113,7 +107,6 @@ int main() {
             system("xdotool key Return");
 
             count++;
-            // Ya no es necesario sleep largo aquí, porque el sleep está justo después de abrir la URL
         } else {
             printf("Formato incorrecto en la línea: %s\n", input);
         }
@@ -121,6 +114,12 @@ int main() {
 
     fclose(file);
     printf("Se han automatizado %d inicios de sesión en Firefox.\n", count);
-    return 0;
 }
+
+int main() {
+    formater();
+    if (formater_ended) {
+        producer();
+    }
+    return 0;
 }

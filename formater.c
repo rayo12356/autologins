@@ -3,6 +3,8 @@
 #define MAX_LINE 1024
 #define MAX_EXCEPCIONES 100
 
+bool formater_ended =false;
+
 typedef struct {
     char dominio[256];
     char directorio[256];
@@ -151,9 +153,9 @@ const char* get_directory(const char* domain, ExcepcionDirectorio* exc_dir, int 
     return "";
 }
 
-int main() {
+int formater(void) {
 
-    bool formater_ended =false;
+
     FILE *fin = fopen("entrada.txt", "r");
     FILE *fout = fopen("salida.txt", "w");
     char buffer[MAX_LINE];

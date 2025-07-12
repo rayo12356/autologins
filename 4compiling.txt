@@ -1,0 +1,3 @@
+$ gcc main.c formater.c -c -fPICe
+$ gcc formater.o main.o -o autolog
+$ ./autolog
